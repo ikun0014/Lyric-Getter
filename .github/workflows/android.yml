@@ -23,10 +23,10 @@ jobs:
         run: |
           if [ ! -z "${{ secrets.SIGNING_KEY }}" ]; then
             echo androidStorePassword='${{ secrets.KEY_STORE_PASSWORD }}' >> local.properties
-            echo androidKeyAlias='xiao_wine' >> local.properties
+            echo androidKeyAlias='androiddebugkey' >> local.properties
             echo androidKeyPassword='${{ secrets.KEY_STORE_PASSWORD }}' >> local.properties
-            echo androidStoreFile=`pwd`/key.jks >> local.properties
-            echo ${{ secrets.SIGNING_KEY }} | base64 --decode > key.jks
+            echo androidStoreFile=`pwd`/debug.keystore >> local.properties
+            echo ${{ secrets.SIGNING_KEY }} | base64 --decode > debug.keystore
           fi
 
       - name: set up JDK 17
@@ -49,12 +49,6 @@ jobs:
           wget -O ./doc/notice_list.json https://xiaowine.github.io/Lyric-Getter/notice_list.json
           ./gradlew assemble
           ./gradlew bundleRelease
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ github.token }}
-          publish_dir: ./doc
 
       - name: Upload Release APK
         uses: actions/upload-artifact@v3
