@@ -13,7 +13,7 @@ import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import cn.lyric.getter.tool.ConfigTools.xConfig as config
 
-object Toside : BaseHook() {
+object Tosidemod : BaseHook() {
 
     override fun init() {
         super.init()
@@ -41,7 +41,7 @@ object Toside : BaseHook() {
 
             loadClass("android.view.WindowManagerImpl").methodFinder().first { name == "addView" }.createHook {
                 after { view ->
-                    if (view.args[0]::class.java.name.contains("cn.toside.music.mobile.lyric")) {
+                    if (view.args[0]::class.java.name.contains("com.ikunshare.music.mobile.lyric")) {
                         (view.args[0] as View).visibility = View.GONE
                     }
                 }
