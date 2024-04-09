@@ -13,7 +13,7 @@ import com.github.kyuubiran.ezxhelper.HookFactory.`-Static`.createHook
 import com.github.kyuubiran.ezxhelper.finders.MethodFinder.`-Static`.methodFinder
 import cn.lyric.getter.tool.ConfigTools.xConfig as config
 
-object Tosidemod : BaseHook() {
+object TosideMod : BaseHook() {
 
     override fun init() {
         super.init()
